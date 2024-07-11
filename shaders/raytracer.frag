@@ -1,5 +1,8 @@
 #version 430 core
 
+// Input UV position
+in vec2 fragUV;
+
 // Out value for color of the fragment
 out vec4 fragColor;
 
