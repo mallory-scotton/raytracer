@@ -514,6 +514,16 @@ struct Vec2
     {
         Vec2 toVector = target - current;
         float sqdist = (toVector.x * toVector.x) + (toVector.y * toVector.y);
+
+        if (sqdist == 0.0F ||(maxDistanceDelta >= 0.0F && sqdist <= maxDistanceDelta * maxDistanceDelta))
+            return (target);
+
+        float dist = sqrtf(sqdist);
+
+        return (Vec2(
+            current.x + toVector.x / dist * maxDistanceDelta,
+            current.y + toVector.y / dist * maxDistanceDelta
+        ));
     };
 
     inline Vec2 Vec2::LerpUnclamped(const Vec2& a, const Vec2& b, float t)
