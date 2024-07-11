@@ -568,6 +568,17 @@ struct Vec3
     {
         Vec3 toVector = target - current;
         float sqdist = (toVector.x * toVector.x) + (toVector.y * toVector.y) + (toVector.z * toVector.z);
+
+        if (sqdist == 0.0F ||(maxDistanceDelta >= 0.0F && sqdist <= maxDistanceDelta * maxDistanceDelta))
+            return (target);
+
+        float dist = sqrtf(sqdist);
+
+        return (Vec3(
+            current.x + toVector.x / dist * maxDistanceDelta,
+            current.y + toVector.y / dist * maxDistanceDelta,
+            current.z + toVector.z / dist * maxDistanceDelta
+        ));
     };
 
     inline Vec3 Vec3::LerpUnclamped(const Vec3& a, const Vec3& b, float t)
