@@ -188,6 +188,15 @@ struct Vec3
         bool operator==(const Vec3& v) const;
 
         /**
+         * @brief Compares this vector with another vector for inequality.
+         *
+         * @param v The vector to compare with.
+         *
+         * @return True if vectors are inequal, false otherwise.
+         */
+        bool operator!=(const Vec3& v) const;
+
+        /**
          * @brief Accesses vector component by index.
          *
          * @param i The index (0 for x, 1 for y, 2 for z).
@@ -462,7 +471,12 @@ struct Vec3
     inline bool Vec3::operator==(const Vec3& v) const
     {
         return (x == v.x && y == v.y && z == v.z);
-    }
+    };
+
+    inline bool Vec3::operator!=(const Vec3& v) const
+    {
+        return (!((*this) == v));
+    };
 
     inline float Vec3::operator[](int i) const
     {
