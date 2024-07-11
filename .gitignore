@@ -1,0 +1,44 @@
+# Ignore all
+*
+
+# Unignore file with extension
+!*.*
+
+# Ignore experimental code file
+/*.c
+/*.cpp
+/*.h
+/*.hpp
+
+# Ignore logs and tests
+*.json
+*.log
+*.txt
+*.temp
+
+# Ignore all criterion and coverage files
+*.gcda
+*.gcno
+/*.css
+/*.html
+
+# Ignore tests shaders
+/*.frag
+/*.vert
+/*.glsl
+
+# Ignore objects
+*.a
+*.o
+*.out
+*.exe
+
+# Ignore scripts
+*.sh
+*.pl
+*.bat
+
+# Execptions
+!Makefile
+!.gitignore
+!LICENSE
