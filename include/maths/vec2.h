@@ -211,6 +211,20 @@ struct Vec2
         operator sf::Vector2f(void) const;
 
         /**
+         * @brief Converts to 3D vector.
+         *
+         * @return The 3D vector.
+         */
+        operator Vec3(void) const;
+
+        /**
+         * @brief Converts to 4D vector.
+         *
+         * @return The 4D vector.
+         */
+        operator Vec4(void) const;
+
+        /**
          * @brief Finds component-wise minimum of two vectors.
          *
          * @param a The first vector.
@@ -450,9 +464,19 @@ struct Vec2
         return ((i == 0) ? x : y);
     };
 
-    inline operator sf::Vector2f() const
+    inline operator sf::Vector2f(void) const
     {
         return (sf::Vector2f(x, y));
+    };
+
+    inline operator Vec3(void) const
+    {
+        return (Vec3(x, y, 0.0F));
+    };
+
+    inline operator Vec4(void) const
+    {
+        return (Vec4(x, y, 0.0F, 0.0F));
     };
 
     inline Vec2 Vec2::Min(const Vec2& a, const Vec2& b)
