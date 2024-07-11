@@ -149,26 +149,6 @@ typedef struct {
     std::vector<float> texcoords;
 } attrib_t;
 
-typedef struct callback_t_ {
-    void (*vertex_cb)(void *user_data, float x, float y, float z, float w);
-    void (*normal_cb)(void *user_data, float x, float y, float z);
-    void (*texcoord_cb)(void *user_data, float x, float y, float z);
-    void (*index_cb)(void *user_data, index_t *indices, int num_indices);
-    void (*usemtl_cb)(void *user_data, const char *name, int material_id);
-    void (*mtllib_cb)(void *user_data, const material_t *materials, int num_materials);
-    void (*group_cb)(void *user_data, const char **names, int num_names);
-    void (*object_cb)(void *user_data, const char *name);
-    callback_t_() :
-        vertex_cb(NULL),
-        normal_cb(NULL),
-        texcoord_cb(NULL),
-        index_cb(NULL),
-        usemtl_cb(NULL),
-        mtllib_cb(NULL),
-        group_cb(NULL),
-        object_cb(NULL) {}
-} callback_t;
-
 class MaterialReader {
 public:
     MaterialReader() {}
@@ -207,11 +187,6 @@ bool LoadObj(attrib_t *attrib, std::vector<shape_t> *shapes,
              std::vector<material_t> *materials, std::string *err,
              const char *filename, const char *mtl_basedir = NULL,
              bool triangulate = true);
-
-bool LoadObjWithCallback(std::istream &inStream, const callback_t &callback,
-                         void *user_data = NULL,
-                         MaterialReader *readMatFn = NULL,
-                         std::string *err = NULL);
 
 bool LoadObj(attrib_t *attrib, std::vector<shape_t> *shapes,
              std::vector<material_t> *materials, std::string *err,
