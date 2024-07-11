@@ -210,7 +210,7 @@ struct Vec3
          *
          * @return The SFML vector.
          */
-        operator sf::Vector3f() const;
+        operator sf::Vector3f(void) const;
 
         /**
          * @brief Finds component-wise minimum of two vectors.
