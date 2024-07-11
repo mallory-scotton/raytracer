@@ -313,6 +313,58 @@ struct Vec3
         static Vec3 MoveTowards(const Vec3& current, const Vec3& target, float maxDistanceDelta);
 
         /**
+         * @brief Linearly interpolates between two vectors without clamping the interpolant.
+         *
+         * @param a The start vector.
+         * @param b The end vector.
+         * @param t The interpolant, where 0 returns the start vector and 1 returns the end vector.
+         *
+         * @return The interpolated vector.
+         */
+        static Vec3 LerpUnclamped(const Vec3& a, const Vec3& b, float t);
+
+        /**
+         * @brief Linearly interpolates between two vectors, clamping the interpolant between 0 and 1.
+         *
+         * @param a The start vector.
+         * @param b The end vector.
+         * @param t The interpolant, where 0 returns the start vector and 1 returns the end vector. Values outside the range [0, 1] are clamped.
+         *
+         * @return The interpolated vector.
+         */
+        static Vec3 Lerp(const Vec3& a, const Vec3& b, float t);
+
+        /**
+         * @brief Projects vector v onto the vector normal.
+         *
+         * @param v The vector to project.
+         * @param normal The vector to project onto.
+         *
+         * @return The projected vector.
+         */
+        static Vec3 Project(const Vec3& v, const Vec3& normal);
+
+        /**
+         * @brief Projects vector v onto a plane defined by its normal.
+         *
+         * @param v The vector to project.
+         * @param planeNormal The normal of the plane.
+         *
+         * @return The projected vector on the plane.
+         */
+        static Vec3 ProjectOnPlane(const Vec3& v, const Vec3& planeNormal);
+
+        /**
+         * @brief Reflects a vector off a surface with a given normal.
+         *
+         * @param inDirection The incident vector.
+         * @param inNormal The normal of the surface.
+         *
+         * @return The reflected vector.
+         */
+        static Vec3 Reflect(const Vec3& inDirection, const Vec3& inNormal);
+
+        /**
          * @brief Converts the vector to an SFML vector.
          *
          * @return The SFML vector.
@@ -502,6 +554,63 @@ struct Vec3
     {
         Vec3 toVector = target - current;
         float sqdist = (toVector.x * toVector.x) + (toVector.y * toVector.y) + (toVector.z * toVector.z);
+    };
+
+    inline Vec3 Vec3::LerpUnclamped(const Vec3& a, const Vec3& b, float t)
+    {
+        return (Vec3(
+            a.x + (b.x - a.x) * t,
+            a.y + (b.y - a.y) * t,
+            a.z + (b.z - a.z) * t
+        ));
+    };
+
+    inline Vec3 Vec3::Lerp(const Vec3& a, const Vec3& b, float t)
+    {
+        return (LerpUnclamped(a, b, Math::Clamp01(t)));
+    };
+
+    inline Vec3 Project(const Vec3& v, const Vec3& normal)
+    {
+        float sqrMag = Dot(normal, normal);
+
+        if (sqrMag < Math::Epsilon)
+            return (zero);
+
+        float dot = Dot(v, normal);
+
+        return (Vec3(
+            normal.x * dot / sqrMag,
+            normal.y * dot / sqrMag,
+            normal.z * dot / sqrMag
+        ));
+    };
+
+    inline Vec3 ProjectOnPlane(const Vec3& v, const Vec3& planeNormal)
+    {
+        float sqrMag = Dot(planeNormal, planeNormal);
+
+        if (sqrMag < Math::Epsilon)
+            return (v);
+
+        float dot = Dot(v, planeNormal);
+
+        return (Vec3(
+            v.x - planeNormal.x * dot / sqrMag,
+            v.y - planeNormal.y * dot / sqrMag,
+            v.z - planeNormal.z * dot / sqrMag
+        ));
+    };
+
+    inline Vec3 Reflect(const Vec3& inDirection, const Vec3& inNormal)
+    {
+        float factor = -2.0F * Dot(inNormal, inDirection);
+
+        return (Vec3(
+            factor * inNormal.x + inDirection.x,
+            factor * inNormal.y + inDirection.y,
+            factor * inNormal.z + inDirection.z
+        ));
     };
 
     inline sf::Vector3f Vec3::toSFMLVector(void)
