@@ -332,11 +332,14 @@ struct Vec2
          */
         static Vec2 Reflect(const Vec2& inDirection, const Vec2& inNormal);
 
+        /**
+         * @brief Calculates a perpendicular vector to the input vector.
+         *
+         * @param v The input vector.
+         *
+         * @return A perpendicular vector to v.
+         */
         static Vec2 Perpendicular(const Vec2& v);
-
-        static float Angle(const Vec2& from, const Vec2& to);
-
-        static float SignedAngle(const Vec2& from, const Vec2& to);
 
         /**
          * @brief Converts the vector to an SFML vector.
@@ -469,4 +472,88 @@ struct Vec2
         out.y = std::max(a.y, b.y);
         return (out);
     };
+
+    inline Vec2 Vec2::Pow(const Vec2& a, float exp)
+    {
+        return (Vec2(powf(a.x, exp), powf(a.y, exp)));
+    };
+
+    inline float Vec2::Length(const Vec2& a)
+    {
+        return (sqrtf((a.x * a.x) + (a.y * a.y)));
+    };
+
+    inline float Vec2::Distance(const Vec2& a, const Vec2& b)
+    {
+        Vec2 t = a;
+
+        return (Length(t - b));
+    };
+
+    inline float Vec2::Dot(const Vec2& a, const Vec2& b)
+    {
+        return ((a.x * b.x) + (a.y * b.y));
+    };
+
+    inline Vec2 Vec2::Clamp(const Vec2& a, const Vec2& min, const Vec2& max)
+    {
+        return (Vec2(
+            Math::Clamp(a.x, min.x, max.x),
+            Math::Clamp(a.y, min.y, max.y)
+        ));
+    };
+
+    inline Vec2 Vec2::Normalize(const Vec2& a)
+    {
+        float l = Length(a);
+
+        return (a / l);
+    };
+
+    inline Vec2 Vec2::MoveTowards(const Vec2& current, const Vec2& target, float maxDistanceDelta)
+    {
+        Vec2 toVector = target - current;
+        float sqdist = (toVector.x * toVector.x) + (toVector.y * toVector.y);
+    };
+
+    inline Vec2 Vec2::LerpUnclamped(const Vec2& a, const Vec2& b, float t)
+    {
+        return (Vec2(
+            a.x + (b.x - a.x) * t,
+            a.y + (b.y - a.y) * t
+        ));
+    };
+
+    inline Vec2 Vec2::Lerp(const Vec2& a, const Vec2& b, float t)
+    {
+        return (LerpUnclamped(a, b, Math::Clamp01(t)));
+    };
+
+    inline Vec2 Vec2::Reflect(const Vec2& inDirection, const Vec2& inNormal)
+    {
+        float factor = -2.0F * Dot(inNormal, inDirection);
+
+        return (Vec2(
+            factor * inNormal.x + inDirection.x,
+            factor * inNormal.y + inDirection.y
+        ));
+    };
+
+    inline Vec2 Vec2::Perpendicular(const Vec2& v)
+    {
+        return (Vec2(-v.y, v.x));
+    };
+};
+
+const Vec2 Vec2::zero       = Vec2( 0.0F,  0.0F);
+const Vec2 Vec2::one        = Vec2( 1.0F,  1.0F);
+const Vec2 Vec2::up         = Vec2( 0.0F,  1.0F);
+const Vec2 Vec2::down       = Vec2( 0.0F, -1.0F);
+const Vec2 Vec2::left       = Vec2(-1.0F,  0.0F);
+const Vec2 Vec2::right      = Vec2( 1.0F,  0.0F);
+
+std::ostream& operator<<(std::ostream& os, const Vec2& v)
+{
+    os << '(' << v.x << ", " << v.y << ')';
+    return (os);
 };
