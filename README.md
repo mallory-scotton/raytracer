@@ -24,7 +24,9 @@
 
 ## 🧱 Dependencies
 
-[TODO]
+- [SFML](https://github.com/SFML/SFML)
+- [Dear ImGui](https://github.com/ocornut/imgui)
+- [ImGui-SFML](https://github.com/SFML/imgui-sfml)
 
 ## 📜 License
 
