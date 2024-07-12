@@ -522,8 +522,8 @@ struct Vec2
     inline Vec2 Vec2::Clamp(const Vec2& a, const Vec2& min, const Vec2& max)
     {
         return (Vec2(
-            Math::Clamp(a.x, min.x, max.x),
-            Math::Clamp(a.y, min.y, max.y)
+            Mathf::Clamp(a.x, min.x, max.x),
+            Mathf::Clamp(a.y, min.y, max.y)
         ));
     };
 
@@ -560,7 +560,7 @@ struct Vec2
 
     inline Vec2 Vec2::Lerp(const Vec2& a, const Vec2& b, float t)
     {
-        return (LerpUnclamped(a, b, Math::Clamp01(t)));
+        return (LerpUnclamped(a, b, Mathf::Clamp01(t)));
     };
 
     inline Vec2 Vec2::Reflect(const Vec2& inDirection, const Vec2& inNormal)

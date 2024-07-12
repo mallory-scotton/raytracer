@@ -575,9 +575,9 @@ struct Vec3
     inline Vec3 Vec3::Clamp(const Vec3& a, const Vec3& min, const Vec3& max)
     {
         return (Vec3(
-            Math::Clamp(a.x, min.x, max.x),
-            Math::Clamp(a.y, min.y, max.y),
-            Math::Clamp(a.z, min.z, max.z)
+            Mathf::Clamp(a.x, min.x, max.x),
+            Mathf::Clamp(a.y, min.y, max.y),
+            Mathf::Clamp(a.z, min.z, max.z)
         ));
     };
 
@@ -616,14 +616,14 @@ struct Vec3
 
     inline Vec3 Vec3::Lerp(const Vec3& a, const Vec3& b, float t)
     {
-        return (LerpUnclamped(a, b, Math::Clamp01(t)));
+        return (LerpUnclamped(a, b, Mathf::Clamp01(t)));
     };
 
     inline Vec3 Vec3::Project(const Vec3& v, const Vec3& normal)
     {
         float sqrMag = Dot(normal, normal);
 
-        if (sqrMag < Math::Epsilon)
+        if (sqrMag < Mathf::Epsilon)
             return (zero);
 
         float dot = Dot(v, normal);
@@ -639,7 +639,7 @@ struct Vec3
     {
         float sqrMag = Dot(planeNormal, planeNormal);
 
-        if (sqrMag < Math::Epsilon)
+        if (sqrMag < Mathf::Epsilon)
             return (v);
 
         float dot = Dot(v, planeNormal);

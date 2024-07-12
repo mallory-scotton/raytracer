@@ -551,10 +551,10 @@ struct Vec4
     inline Vec4 Vec4::Clamp(const Vec4& a, const Vec4& min, const Vec4& max)
     {
         return (Vec4(
-            Math::Clamp(a.x, min.x, max.x),
-            Math::Clamp(a.y, min.y, max.y),
-            Math::Clamp(a.z, min.z, max.z),
-            Math::Clamp(a.w, min.w, max.w)
+            Mathf::Clamp(a.x, min.x, max.x),
+            Mathf::Clamp(a.y, min.y, max.y),
+            Mathf::Clamp(a.z, min.z, max.z),
+            Mathf::Clamp(a.w, min.w, max.w)
         ));
     };
 
@@ -595,14 +595,14 @@ struct Vec4
 
     inline Vec4 Vec4::Lerp(const Vec4& a, const Vec4& b, float t)
     {
-        return (LerpUnclamped(a, b, Math::Clamp01(t)));
+        return (LerpUnclamped(a, b, Mathf::Clamp01(t)));
     };
 
     inline Vec4 Vec4::Project(const Vec4& v, const Vec4& normal)
     {
         float sqrMag = Dot(normal, normal);
 
-        if (sqrMag < Math::Epsilon)
+        if (sqrMag < Mathf::Epsilon)
             return (zero);
 
         float dot = Dot(v, normal);
