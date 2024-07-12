@@ -30,7 +30,7 @@
 #include <algorithm>
 #include "config.h"
 
-struct Math
+struct Mathf
 {
     public:
         /**
@@ -262,11 +262,410 @@ struct Math
             return (delta);
         };
 
+        /**
+         * @brief Returns the absolute value of a floating-point number.
+         *
+         * @param x The floating-point number.
+         *
+         * @return The absolute value of x.
+         */
+        static inline float Abs(float x)
+        {
+            return (std::fabs(x));
+        };
+
+        /**
+         * @brief Returns the smaller of two floating-point numbers.
+         *
+         * @param a The first number.
+         * @param b The second number.
+         *
+         * @return The smaller of a and b.
+         */
+        static inline float Min(float a, float b)
+        {
+            return ((float)std::min(a, b));
+        };
+
+        /**
+         * @brief Returns the smallest of three floating-point numbers.
+         *
+         * @param a The first number.
+         * @param b The second number.
+         * @param c The third number.
+         *
+         * @return The smallest of a, b, and c.
+         */
+        static inline float Min(float a, float b, float c)
+        {
+            return ((float)std::min({a, b, c}));
+        };
+
+        /**
+         * @brief Returns the smallest of a list a floating-point numbers;
+         *
+         * @param l The list of numbers.
+         *
+         * @return The smallest of the list.
+         */
+        static inline float Min(std::initializer_list<float> l)
+        {
+            return ((float)std::min(l));
+        };
+
+        /**
+         * @brief Returns the larger of two floating-point numbers.
+         *
+         * @param a The first number.
+         * @param b The second number.
+         *
+         * @return The larger of a and b.
+         */
+        static inline float Max(float a, float b)
+        {
+            return ((float)std::max(a, b));
+        };
+
+        /**
+         * @brief Returns the largest of three floating-point numbers.
+         *
+         * @param a The first number.
+         * @param b The second number.
+         * @param c The third number.
+         *
+         * @return The largest of a, b, and c.
+         */
+        static inline float Max(float a, float b, float c)
+        {
+            return ((float)std::max({a, b, c}));
+        };
+
+        /**
+         * @brief Returns the larger of a list a floating-point numbers;
+         *
+         * @param l The list of numbers.
+         *
+         * @return The larger of the list.
+         */
+        static inline float Max(std::initializer_list<float> l)
+        {
+            return ((float)std::max(l));
+        };
+
+        /**
+         * @brief Returns the sine of a floating-point angle in radians.
+         *
+         * @param f The angle in radians.
+         *
+         * @return The sine of the angle.
+         */
+        static inline float Sin(float f)
+        {
+            return ((float)std::sin(f));
+        };
+
+        /**
+         * @brief Returns the cosine of a floating-point angle in radians.
+         *
+         * @param f The angle in radians.
+         *
+         * @return The cosine of the angle.
+         */
+        static inline float Cos(float f)
+        {
+            return ((float)std::cos(f));
+        };
+
+        /**
+         * @brief Returns the tangent of a floating-point angle in radians.
+         *
+         * @param f The angle in radians.
+         *
+         * @return The tangent of the angle.
+         */
+        static inline float Tan(float f)
+        {
+            return ((float)std::tan(f));
+        };
+
+        /**
+         * @brief Returns the arcsine of a floating-point value.
+         *
+         * @param f The value.
+         *
+         * @return The arcsine of the value.
+         */
+        static inline float Asin(float f)
+        {
+            return ((float)std::asin(f));
+        };
+
+        /**
+         * @brief Returns the arccosine of a floating-point value.
+         *
+         * @param f The value.
+         *
+         * @return The arccosine of the value.
+         */
+        static inline float Acos(float f)
+        {
+            return ((float)std::acos(f));
+        };
+
+        /**
+         * @brief Returns the arctangent of a floating-point value.
+         *
+         * @param f The value.
+         *
+         * @return The arctangent of the value.
+         */
+        static inline float Atan(float f)
+        {
+            return ((float)std::atan(f));
+        };
+
+        /**
+         * @brief Returns the arctangent of the quotient of two values.
+         *
+         * @param y The numerator.
+         * @param x The denominator.
+         *
+         * @return The arctangent of y/x.
+         */
+        static inline float Atan2(float y, float x)
+        {
+            return ((float)std::atan2(y, x));
+        };
+
+        /**
+         * @brief Returns the square root of a floating-point value.
+         *
+         * @param f The value.
+         *
+         * @return The square root of the value.
+         */
+        static inline float Sqrt(float f)
+        {
+            return ((float)std::sqrt(f));
+        };
+
+        /**
+         * @brief Returns the value of a floating-point base raised to a power.
+         *
+         * @param f The base.
+         * @param p The exponent.
+         *
+         * @return The result of raising f to the power p.
+         */
+        static inline float Pow(float f, float p)
+        {
+            return ((float)std::pow(f, p));
+        };
+
+        /**
+         * @brief Returns the exponential function of a floating-point value.
+         *
+         * @param power The exponent.
+         *
+         * @return The exponential function of the value.
+         */
+        static inline float Exp(float power)
+        {
+            return ((float)std::exp(power));
+        };
+
+        /**
+         * @brief Returns the base-2 exponential function of a floating-point value.
+         *
+         * @param power The exponent.
+         *
+         * @return The base-2 exponential function of the value.
+         */
+        static inline float Exp2(float power)
+        {
+            return ((float)std::exp2(power));
+        };
+
+        /**
+         * @brief Returns the natural logarithm of a floating-point value.
+         *
+         * @param f The value.
+         *
+         * @return The natural logarithm of the value.
+         */
+        static inline float Log(float f)
+        {
+            return ((float)std::log(f));
+        };
+
+        /**
+         * @brief Returns the base-2 logarithm of a floating-point value.
+         *
+         * @param f The value.
+         *
+         * @return The base-2 logarithm of the value.
+         */
+        static inline float Log2(float f)
+        {
+            return ((float)std::log2(f));
+        };
+
+        /**
+         * @brief Returns the base-10 logarithm of a floating-point value.
+         *
+         * @param f The value.
+         *
+         * @return The base-10 logarithm of the value.
+         */
+        static inline float Log10(float f)
+        {
+            return ((float)std::log10(f));
+        };
+
+        /**
+         * @brief Returns the smallest integer value greater than or equal to the given floating-point value.
+         *
+         * @param f The value.
+         *
+         * @return The smallest integer value greater than or equal to f.
+         */
+        static inline float Ceil(float f)
+        {
+            return ((float)std::ceil(f));
+        };
+
+        /**
+         * @brief Returns the smallest integer greater than or equal to the given floating-point value.
+         *
+         *  @param f The value.
+         *
+         *  @return The smallest integer greater than or equal to f.
+         */
+        static inline int CeilToInt(float f)
+        {
+            return ((int)Ceil(f));
+        };
+
+        /**
+         * @brief Returns the largest integer value less than or equal to the given floating-point value.
+         *
+         * @param f The value.
+         *
+         * @return The largest integer value less than or equal to f.
+         */
+        static inline float Floor(float f)
+        {
+            return ((float)std::floor(f));
+        };
+
+        /**
+         * @brief Returns the largest integer less than or equal to the given floating-point value.
+         *
+         * @param f The value.
+         *
+         * @return The largest integer less than or equal to f.
+         */
+        static inline int FloorToInt(float f)
+        {
+            return ((int)Floor(f));
+        };
+
+        /**
+         * @brief Rounds the given floating-point value to the nearest integer.
+         *
+         * @param f The value.
+         *
+         * @return The rounded value.
+         */
+        static inline float Round(float f)
+        {
+            return ((float)std::round(f));
+        };
+
+        /**
+         * @brief Rounds the given floating-point value to the nearest integer and returns it as an int.
+         *
+         * @param f The value.
+         *
+         * @return The rounded value as an int.
+         */
+        static inline int RoundToInt(float f)
+        {
+            return ((int)Round(f));
+        };
+
+        /**
+         * @brief Smoothly dampens a value towards a target over time.
+         *
+         * @param current The current value.
+         * @param target The target value.
+         * @param currentVelocity The current velocity, modified by the function.
+         * @param smoothTime The time to reach the target.
+         * @param maxSpeed The maximum speed of movement.
+         * @param deltaTime The time step.
+         *
+         * @return The new value after smoothing.
+         */
+        static inline float SmoothDamp(float current, float target, float& currentVelocity, float smoothTime, float maxSpeed, float deltaTime)
+        {
+            smoothTime = Max(0.0001F, smoothTime);
+            float omega = 2.0F / smoothTime;
+
+            float x = omega * deltaTime;
+            float exp = 1.0F  / (1.0F + x + 0.48F * x * x + 0.235F * x * x * x);
+            float change = current - target;
+            float originalTo = target;
+
+            float maxChange = maxSpeed * smoothTime;
+            change = Clamp(change, -maxChange, maxChange);
+            target = current - change;
+
+            float temp = (currentVelocity + omega * change) * deltaTime;
+            currentVelocity = (currentVelocity - omega * temp) * exp;
+            float output = target + (change + temp) * exp;
+
+            if ((originalTo - current > 0.0F) == (output > originalTo))
+            {
+                output = originalTo;
+                currentVelocity = (output - originalTo) / deltaTime;
+            }
+            return (output);
+        };
+
+        /**
+         * @brief Rounds the given value to the nearest multiple of the specified rounding value.
+         *
+         * @param value The value to round.
+         * @param roundingValue The rounding value.
+         *
+         * @return The value rounded to the nearest multiple of roundingValue.
+         */
+        static inline float RoundToMulitpleOf(float value, float roundingValue)
+        {
+            if (roundingValue == 0)
+                return (value);
+            return (Round(value / roundingValue) * roundingValue);
+        };
+
+        /**
+         * @brief Returns the closest power of ten to the given positive number.
+         *
+         * @param positiveNumber The positive number.
+         *
+         * @return The closest power of ten.
+         */
+        static inline float GetClosestPowerOfTen(float positiveNumber)
+        {
+            if (positiveNumber <= 0)
+                return (1.0F);
+            return (Pow(10.0F, RoundToInt(Log10(positiveNumber))));
+        };
+
         static const float Epsilon;
         static const float Pi;
         static const float Tau;
 };
 
-const float Math::Epsilon   = 1.4001298E-45;
-const float Math::Pi        = PI;
-const float Math::Tau       = (PI * 2.0F);
+const float Mathf::Epsilon   = 1.4001298E-45;
+const float Mathf::Pi        = PI;
+const float Mathf::Tau       = (PI * 2.0F);
